@@ -15,7 +15,11 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Pomodoro_Timer", "Pomodoro 
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Pomodoro Timer\Pomodoro_Timer\Pomodoro_Timer.projitems*{bb2eb921-3865-41fb-a51b-20b5b1ca4a13}*SharedItemsImports = 4
+		Pomodoro Timer\Pomodoro_Timer\Pomodoro_Timer.projitems*{c5cc5f7e-dd27-478c-bb37-db6b20a2db44}*SharedItemsImports = 4
+		Pomodoro Timer\Pomodoro_Timer\Pomodoro_Timer.projitems*{029a939b-154d-41b4-98ee-24bcdc8feb06}*SharedItemsImports = 4
 		Pomodoro Timer\Pomodoro_Timer\Pomodoro_Timer.projitems*{c158500d-0226-4b3f-9605-fb1b77d56261}*SharedItemsImports = 13
+		Pomodoro Timer\Pomodoro_Timer\Pomodoro_Timer.projitems*{8a9fb2db-e8ff-4132-a5ed-1ab18055958e}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
