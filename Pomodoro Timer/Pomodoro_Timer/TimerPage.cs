@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Xamarin.Forms;
 
 namespace Pomodoro_Timer
 {
-	public class TimerPage : ContentPage
+    public class TimerPage : ContentPage
 	{
-        Timer _timer;
+        PomodoroTimer _timer;
 
-		public TimerPage (Timer timer)
+		public TimerPage (PomodoroTimer timer)
 		{
             this._timer = timer;
             this.BindingContext = timer;

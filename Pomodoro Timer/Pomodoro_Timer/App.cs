@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 using Xamarin.Forms;
 
 namespace Pomodoro_Timer
 {
-	public class App : Application
+    public class App : Application
 	{
 		public App ()
 		{
             // The root page of your application
-            MainPage = new TimerPage(new Timer());
+            MainPage = new TimerPage(new PomodoroTimer());
 		}
 
 		protected override void OnStart ()
