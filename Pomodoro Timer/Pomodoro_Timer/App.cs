@@ -8,7 +8,7 @@ namespace Pomodoro_Timer
 		public App ()
 		{
             // The root page of your application
-            MainPage = new TimerPage(new PomodoroTimer());
+            MainPage = new TimerPage(new TimerViewModel());
 		}
 
 		protected override void OnStart ()

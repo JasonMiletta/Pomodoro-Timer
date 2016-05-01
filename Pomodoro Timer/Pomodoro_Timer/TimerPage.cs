@@ -6,21 +6,19 @@ namespace Pomodoro_Timer
 {
     public class TimerPage : ContentPage
 	{
-        PomodoroTimer _timer;
+        TimerViewModel _timer;
 
-		public TimerPage (PomodoroTimer timer)
+		public TimerPage (TimerViewModel timer)
 		{
             this._timer = timer;
             this.BindingContext = timer;
-            var seconds = "00";
-            var minutes = "00";
 
             var CurrentTimer = new Label
             {
-                Text = minutes + ":" + seconds,
+                Text = timer.time,
                 HorizontalTextAlignment =  TextAlignment.Center
             };
-            CurrentTimer.SetBinding(Label.TextProperty, "Seconds");
+            //CurrentTimer.SetBinding(Label.TextProperty, "time");
 
             var StartButton = new Button
             {
