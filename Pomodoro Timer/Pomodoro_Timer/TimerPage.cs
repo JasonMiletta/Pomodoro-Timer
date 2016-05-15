@@ -18,7 +18,7 @@ namespace Pomodoro_Timer
                 Text = timer.time,
                 HorizontalTextAlignment =  TextAlignment.Center
             };
-            //CurrentTimer.SetBinding(Label.TextProperty, "time");
+            CurrentTimer.SetBinding(Label.TextProperty, "time");
 
             var StartButton = new Button
             {

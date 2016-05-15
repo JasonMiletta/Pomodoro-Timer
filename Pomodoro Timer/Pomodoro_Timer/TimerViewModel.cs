@@ -20,14 +20,16 @@ namespace Pomodoro_Timer
         {
             get
             {
-                return "time";
+                return _time;
             }
             set
             {
-                time = value;
-               // OnPropertyChanged();
+                _time = value;
+                OnPropertyChanged();
             }
         }
+
+        private string _time;
 
         public TimerViewModel()
         {
