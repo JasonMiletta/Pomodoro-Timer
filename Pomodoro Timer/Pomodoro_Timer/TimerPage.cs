@@ -8,15 +8,15 @@ namespace Pomodoro_Timer
 	{
         TimerViewModel _timer;
 
-		public TimerPage (TimerViewModel timer)
-		{
+        public TimerPage(TimerViewModel timer)
+        {
             this._timer = timer;
             this.BindingContext = timer;
 
             var CurrentTimer = new Label
             {
                 Text = timer.time,
-                HorizontalTextAlignment =  TextAlignment.Center
+                HorizontalTextAlignment = TextAlignment.Center
             };
             CurrentTimer.SetBinding(Label.TextProperty, "time");
 
@@ -26,7 +26,13 @@ namespace Pomodoro_Timer
                 Placeholder = "Enter a name for your task.",
                 HorizontalTextAlignment = TextAlignment.Center
             };
-            CurrentTimer.SetBinding(Entry.TextProperty, "text");
+            Task.SetBinding(Entry.TextProperty, "text");
+
+            var ProgressBar = new ProgressBar
+            {
+                Progress = 0.0
+            };
+            ProgressBar.SetBinding(ProgressBar.ProgressProperty, "currentProgress");
 
             var StartButton = new Button
             {
@@ -47,7 +53,7 @@ namespace Pomodoro_Timer
             ResetButton.Clicked += OnResetClicked;
             
 			Content = new StackLayout {
-				Children = {CurrentTimer, Task, StartButton, StopButton, ResetButton}
+				Children = {CurrentTimer, Task, ProgressBar, StartButton, StopButton, ResetButton}
 			};
 		}
 

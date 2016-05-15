@@ -14,6 +14,8 @@ namespace Pomodoro_Timer
         private Timer timer;
         private string _time;
         private string _task;
+        private double _currentProgress;
+        private double _timeLimit;
 
         public string time
         {
@@ -37,6 +39,19 @@ namespace Pomodoro_Timer
             set
             {
                 _task = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double currentProgress
+        {
+            get
+            {
+                return _currentProgress;
+            }
+            set
+            {
+                _currentProgress = value;
                 OnPropertyChanged();
             }
         }
@@ -75,12 +90,19 @@ namespace Pomodoro_Timer
             timer = new Timer(50);
             timer.Elapsed += new ElapsedEventHandler(onElapsedEvent);
             _stopwatch = new Stopwatch();
+
+            _timeLimit = .1 * 60 * 1000;
             time = _stopwatch.Elapsed.ToString(@"hh\:mm\:ss\.ff");
         }
 
         private void onElapsedEvent(object source, ElapsedEventArgs e)
         {
-            time = _stopwatch.Elapsed.ToString(@"hh\:mm\:ss\.ff");
+            time = _stopwatch.Elapsed.ToString(@"hh\:mm\:ss\.f");
+            currentProgress = _stopwatch.ElapsedMilliseconds / _timeLimit;
+            if(currentProgress >= 1)
+            {
+                stopTimer();
+            }
         }
     }
 }
