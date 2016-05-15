@@ -96,6 +96,7 @@ namespace Pomodoro_Timer
             timer.Enabled = false;
             _stopwatch.Reset();
             time = _stopwatch.Elapsed.ToString(@"hh\:mm\:ss\.f");
+            currentProgress = _stopwatch.ElapsedMilliseconds / (_timeLimitMinutes * 60 * 1000);
         }
 
         private void initializeTimer()
