@@ -13,6 +13,23 @@ namespace Pomodoro_Timer
             this._timer = timer;
             this.BindingContext = timer;
 
+            var TimeLimitLabel = new Label
+            {
+                Text = _timer.timeLimitMinutes.ToString(),
+                HorizontalTextAlignment = TextAlignment.Center
+            };
+            TimeLimitLabel.SetBinding(Label.TextProperty, "timeLimitMinutes");
+
+            var TimeLimitStepper = new Stepper
+            {
+                Value = _timer.timeLimitMinutes,
+                Minimum = 0,
+                Maximum = 60,
+                Increment = 1,
+                HorizontalOptions = LayoutOptions.Center
+            };
+            TimeLimitStepper.SetBinding(Stepper.ValueProperty, "timeLimitMinutes");
+
             var CurrentTimer = new Label
             {
                 Text = timer.time,
@@ -53,7 +70,7 @@ namespace Pomodoro_Timer
             ResetButton.Clicked += OnResetClicked;
             
 			Content = new StackLayout {
-				Children = {CurrentTimer, Task, ProgressBar, StartButton, StopButton, ResetButton}
+				Children = {TimeLimitLabel, TimeLimitStepper, CurrentTimer, Task, ProgressBar, StartButton, StopButton, ResetButton}
 			};
 		}
 
