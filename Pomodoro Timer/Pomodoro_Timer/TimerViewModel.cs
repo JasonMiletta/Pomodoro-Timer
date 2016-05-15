@@ -10,11 +10,9 @@ namespace Pomodoro_Timer
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        Stopwatch _stopwatch;
-
-        public float seconds;
-        public float minutes;
-        public float hours;
+        private Stopwatch _stopwatch;
+        private Timer timer;
+        private string _time;
 
         public string time
         {
@@ -29,7 +27,6 @@ namespace Pomodoro_Timer
             }
         }
 
-        private string _time;
 
         public TimerViewModel()
         {
@@ -38,35 +35,45 @@ namespace Pomodoro_Timer
 
         void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            /*
             var handler = PropertyChanged;
             if(handler != null)
             {
                 handler.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
+            }*/
         }
 
         public void startTimer()
         {
+            timer.Enabled = true;
             _stopwatch.Start();
-            time = "started";
         }
 
         public void stopTimer()
         {
+            timer.Enabled = false;
             _stopwatch.Stop();
-            time = "stopped";
         }
 
         public void resetTimer()
         {
+            timer.Enabled = false;
             _stopwatch.Reset();
-            time = "time";
+            time = _stopwatch.Elapsed.ToString(@"hh\:mm\:ss\.ff");
         }
 
         private void initializeTimer()
         {
+            timer = new Timer(50);
+            timer.Elapsed += new ElapsedEventHandler(onElapsedEvent);
             _stopwatch = new Stopwatch();
+            time = _stopwatch.Elapsed.ToString(@"hh\:mm\:ss\.ff");
+        }
+
+        private void onElapsedEvent(object source, ElapsedEventArgs e)
+        {
+            time = _stopwatch.Elapsed.ToString(@"hh\:mm\:ss\.ff");
         }
     }
 }
