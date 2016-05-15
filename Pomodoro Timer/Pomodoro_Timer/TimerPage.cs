@@ -20,6 +20,14 @@ namespace Pomodoro_Timer
             };
             CurrentTimer.SetBinding(Label.TextProperty, "time");
 
+            var Task = new Entry
+            {
+                Text = timer.task,
+                Placeholder = "Enter a name for your task.",
+                HorizontalTextAlignment = TextAlignment.Center
+            };
+            CurrentTimer.SetBinding(Entry.TextProperty, "text");
+
             var StartButton = new Button
             {
                 Text = "Start"
@@ -37,9 +45,9 @@ namespace Pomodoro_Timer
                 Text = "Reset"
             };
             ResetButton.Clicked += OnResetClicked;
-
+            
 			Content = new StackLayout {
-				Children = {CurrentTimer, StartButton, StopButton, ResetButton}
+				Children = {CurrentTimer, Task, StartButton, StopButton, ResetButton}
 			};
 		}
 

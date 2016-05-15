@@ -13,6 +13,7 @@ namespace Pomodoro_Timer
         private Stopwatch _stopwatch;
         private Timer timer;
         private string _time;
+        private string _task;
 
         public string time
         {
@@ -27,6 +28,18 @@ namespace Pomodoro_Timer
             }
         }
 
+        public string task
+        {
+            get
+            {
+                return _task;
+            }
+            set
+            {
+                _task = value;
+                OnPropertyChanged();
+            }
+        }
 
         public TimerViewModel()
         {
@@ -36,12 +49,6 @@ namespace Pomodoro_Timer
         void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            /*
-            var handler = PropertyChanged;
-            if(handler != null)
-            {
-                handler.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }*/
         }
 
         public void startTimer()
