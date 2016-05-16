@@ -51,6 +51,40 @@ namespace Pomodoro_Timer
             };
             ProgressBar.SetBinding(ProgressBar.ProgressProperty, "currentProgress");
 
+            var BottomButtonBar = ConstructBottomButtonBar();
+
+            var TopButtonBar = ConstructTopButtonBar();
+
+            Content = new StackLayout {
+				Children = {TopButtonBar, TimeLimitLabel, TimeLimitStepper, CurrentTimer, Task, ProgressBar, BottomButtonBar}
+			};
+		}
+
+        private Grid ConstructTopButtonBar()
+        {
+
+            var PomodoroButton = new Button
+            {
+                Text = "Pomodoro"
+            };
+
+            var BreakButton = new Button
+            {
+                Text = "Break"
+            };
+
+            var TopButtonBar = new Grid();
+            TopButtonBar.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
+            TopButtonBar.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            TopButtonBar.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            TopButtonBar.Children.Add(PomodoroButton, 0, 0);
+            TopButtonBar.Children.Add(BreakButton, 1, 0);
+
+            return TopButtonBar;
+        }
+
+        private Grid ConstructBottomButtonBar()
+        {
             var StartButton = new Button
             {
                 Text = "Start"
@@ -68,11 +102,18 @@ namespace Pomodoro_Timer
                 Text = "Reset"
             };
             ResetButton.Clicked += OnResetClicked;
-            
-			Content = new StackLayout {
-				Children = {TimeLimitLabel, TimeLimitStepper, CurrentTimer, Task, ProgressBar, StartButton, StopButton, ResetButton}
-			};
-		}
+
+            var BottomButtonBar = new Grid();
+            BottomButtonBar.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
+            BottomButtonBar.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            BottomButtonBar.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            BottomButtonBar.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            BottomButtonBar.Children.Add(StartButton, 0, 0);
+            BottomButtonBar.Children.Add(StopButton, 1, 0);
+            BottomButtonBar.Children.Add(ResetButton, 2, 0);
+
+            return BottomButtonBar;
+        }
 
         private void OnStartClicked(object sender, EventArgs e)
         {
