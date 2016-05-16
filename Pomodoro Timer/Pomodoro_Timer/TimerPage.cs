@@ -5,7 +5,7 @@ using Xamarin.Forms;
 namespace Pomodoro_Timer
 {
     public class TimerPage : ContentPage
-	{
+    {
         TimerViewModel _timer;
 
         public TimerPage(TimerViewModel timer)
@@ -56,9 +56,9 @@ namespace Pomodoro_Timer
             var TopButtonBar = ConstructTopButtonBar();
 
             Content = new StackLayout {
-				Children = {TopButtonBar, TimeLimitLabel, TimeLimitStepper, CurrentTimer, Task, ProgressBar, BottomButtonBar}
-			};
-		}
+                Children = { TopButtonBar, TimeLimitLabel, TimeLimitStepper, CurrentTimer, Task, ProgressBar, BottomButtonBar }
+            };
+        }
 
         private Grid ConstructTopButtonBar()
         {
@@ -67,11 +67,13 @@ namespace Pomodoro_Timer
             {
                 Text = "Pomodoro"
             };
+            PomodoroButton.Clicked += OnPomodoroClicked;
 
             var BreakButton = new Button
             {
                 Text = "Break"
             };
+            BreakButton.Clicked += OnBreakClicked;
 
             var TopButtonBar = new Grid();
             TopButtonBar.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
@@ -117,7 +119,7 @@ namespace Pomodoro_Timer
 
         private void OnStartClicked(object sender, EventArgs e)
         {
-            _timer.startTimer();   
+            _timer.startTimer();
         }
 
         private void OnStopClicked(object sender, EventArgs e)
@@ -128,6 +130,16 @@ namespace Pomodoro_Timer
         private void OnResetClicked(object sender, EventArgs e)
         {
             _timer.resetTimer();
+        }
+
+        private void OnPomodoroClicked(object sender, EventArgs e)
+        {
+            _timer.setPomodoroTime();
+        }
+
+        private void OnBreakClicked(object sender, EventArgs e)
+        {
+            _timer.setBreakTime();
         }
     }
 }

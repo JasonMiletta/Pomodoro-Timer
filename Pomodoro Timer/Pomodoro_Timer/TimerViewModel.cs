@@ -99,6 +99,18 @@ namespace Pomodoro_Timer
             currentProgress = _stopwatch.ElapsedMilliseconds / (_timeLimitMinutes * 60 * 1000);
         }
 
+        public void setPomodoroTime()
+        {
+            resetTimer();
+            timeLimitMinutes = 25;
+        }
+
+        public void setBreakTime()
+        {
+            resetTimer();
+            timeLimitMinutes = 5;
+        }
+
         private void initializeTimer()
         {
             timer = new Timer(50);
