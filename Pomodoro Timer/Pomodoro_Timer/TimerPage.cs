@@ -13,9 +13,24 @@ namespace Pomodoro_Timer
             this._timer = timer;
             this.BindingContext = timer;
 
+            var TimerSection = ConstructTimerSection();
+
+            var BottomButtonBar = ConstructBottomButtonBar();
+
+            var TopButtonBar = ConstructTopButtonBar();
+
+            Content = new StackLayout {
+                Children = { TopButtonBar, TimerSection, BottomButtonBar },
+                VerticalOptions = LayoutOptions.Center
+            };
+        }
+
+        private StackLayout ConstructTimerSection()
+        {
             var TimeLimitLabel = new Label
             {
-                Text = _timer.timeLimitMinutes.ToString(),
+                Text = string.Format("{0}:00",_timer.timeLimitMinutes.ToString()),
+                FontSize = 30,
                 HorizontalTextAlignment = TextAlignment.Center
             };
             TimeLimitLabel.SetBinding(Label.TextProperty, "timeLimitMinutes");
@@ -32,14 +47,15 @@ namespace Pomodoro_Timer
 
             var CurrentTimer = new Label
             {
-                Text = timer.time,
-                HorizontalTextAlignment = TextAlignment.Center
+                Text = _timer.time,
+                HorizontalTextAlignment = TextAlignment.Center,
+                FontSize = 60
             };
             CurrentTimer.SetBinding(Label.TextProperty, "time");
 
             var Task = new Entry
             {
-                Text = timer.task,
+                Text = _timer.task,
                 Placeholder = "Enter a name for your task.",
                 HorizontalTextAlignment = TextAlignment.Center
             };
@@ -51,13 +67,12 @@ namespace Pomodoro_Timer
             };
             ProgressBar.SetBinding(ProgressBar.ProgressProperty, "currentProgress");
 
-            var BottomButtonBar = ConstructBottomButtonBar();
-
-            var TopButtonBar = ConstructTopButtonBar();
-
-            Content = new StackLayout {
-                Children = { TopButtonBar, TimeLimitLabel, TimeLimitStepper, CurrentTimer, Task, ProgressBar, BottomButtonBar }
+            var TimerSection = new StackLayout
+            {
+                Children = { TimeLimitLabel, TimeLimitStepper, CurrentTimer, Task, ProgressBar }
             };
+
+            return TimerSection;
         }
 
         private Grid ConstructTopButtonBar()
